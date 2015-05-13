@@ -9,12 +9,10 @@ SECTION .text
 main:
 	mov ebx, koeffizient
 	mov eax, [eingabe] ; eax = x
-	imul eax ; eax = x^2
-	imul eax, [ebx] ; eax = a * x^2
-	mov ecx, [eingabe] ; ecx = x
-	imul ecx, [koeffizient + 4] ; ecx = b * x
-	add eax, ecx ; eax = a * x^2 + b * x
-	add eax, [koeffizient + 8] ; eax = a * x′2 + b * x + c
+	imul eax, [koeffizient] ; eax = a * x
+	add eax, [koeffizient + 4] ; eax = a * x + b
+	imul eax, [eingabe] ; eax = a * x^2 + b * x
+	add eax, [koeffizient + 8] ; eax = a * x^2 + b * x + c
 	mov [ergebnis], eax
 
 	; end program
